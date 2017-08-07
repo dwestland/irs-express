@@ -1,0 +1,7 @@
+
+# this should be run under user 'irsexpress'
+
+# 1 */12 * * * sh /opt/irsexpress2/config/backup/backup_all.sh local_db_backup >> /var/log/irsexpress2/backup.log 2>&1
+1 */12 * * * sh /opt/irsexpress2/config/backup/backup_all.sh upload_daily >> /var/log/irsexpress2/backup.log 2>&1
+20 1 * * 6 sh /opt/irsexpress2/config/backup/backup_all.sh upload_weekly >> /var/log/irsexpress2/backup.log 2>&1
+30 2 1 * * sh /opt/irsexpress2/config/backup/backup_all.sh upload_monthly >> /var/log/irsexpress2/backup.log 2>&1

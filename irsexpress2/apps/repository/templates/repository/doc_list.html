@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>IRS Local and National Standards Documents</h1>
+
+<div class="row">
+<div class="col-md-12">
+<table class="table text-center">
+    <thead>
+        <tr>
+            <th class="col-md-1">Actions</th>
+            <th class="col-md-7 text-left">Name</th>
+            <th class="col-md-2">Last Updated</th>
+            <th class="col-md-2">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for doc in object_list %}
+        <tr>
+            <td>
+                {% if user.is_admin %}
+                {% if not doc.scheduled %}
+                    <button class="btn btn-primary btn-sm simple-ajax-btn" data-url="{% url 'schedule_doc_update' doc.pk %}" data-method='POST' data-onsuccess="refresh"><span class="fa fa-refresh"></span> Update</button>
+                {% else %}
+                    <button class="btn btn-primary btn-sm disabled"><span class="fa fa-hourglass-half"></span> Scheduled</button>
+                {% endif %}
+                {% endif %}
+            </td>
+            <td>{{ doc.get_document_name_display }}</td>
+            <td>{{ doc.success_time }}</td>
+            <td class="doc-status-{{ doc.status }}">
+            {% if doc.status == 'error' %}
+            <span class="fa fa-exclamation-circle"></span> {{ doc.status.title }}
+            <span class="fa fa-2x fa-commenting-o" data-toggle="popover" data-placement="left" title="Error on update" data-content="{{ doc.lasterror }}"></span>
+            {% else %}
+            <span class="fa fa-check"></span> {{ doc.status.title }}
+            {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+</div>
+
+{% if user.is_admin %}
+<div class="row">
+<div class="col-md-6">
+<hr/>
+<p>On this page you may see status of recently updated documents.</p>
+<p>Updating will be done automatically.</p>
+<p>You may force updating and it will be done in the nearest time.</p>
+</div>
+</div>
+{% endif %}
+
+{% endblock %}

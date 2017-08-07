@@ -1,0 +1,23 @@
+{% extends 'partials/list.html' %}
+{% load booltags %}
+
+{% block listcontent %}
+
+<table class="table table-condensed table-hover text-center" data-editform="{% url 'new_client' %}">
+<tr>
+    <th class="col-md-1">Actions</th>
+    <th data-sort='display_name' class="sortable col-md-8"><div><span>Client Name</span></div></th>
+    <th data-sort='stage' class="sortable col-md-1"><div><span>Stage</span></div></th>
+    <th data-sort='status' class="sortable col-md-2"><div><span>Status</span></div></th>
+</tr>
+{% for i in items %}
+    <tr data-id="{{ i.id }}">
+        <td><a href="{% url 'client_cp' i.pk %}" class="btn btn-primary btn-sm"><span class="fa fa-edit"></span> Open</a></td>
+        <td>{{ i.display_name }}</td>
+        <td>{{ i.stage }}</td>
+        <td class="x-client-status-{{ i.status }}">{{ i.get_status_display }}</td>
+    </tr>
+{% endfor %}
+</table>
+
+{% endblock %}

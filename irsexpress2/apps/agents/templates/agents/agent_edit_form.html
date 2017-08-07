@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load css_helpers %}
+
+{% block title %}{% if form.instance.pk %}{{ object_title }} Edit {{ form.instance.id }}{% else %}New {{ object_title }}{% endif %}{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-3 col-md-offset-4">
+        <h1 class="text-center">
+        {% if form.instance.pk %}{{ object_title }} Edit{% else %}Add New {{ object_title }}{% endif %}
+        </h1>
+    </div>
+</div>
+
+
+<form class="form-horizontal" method="POST" action="{{ request.path }}">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+        {{ form.as_table }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2 col-md-offset-4">
+        <button class="btn btn-lg btn-primary formuploadbtn">
+        {% if form.instance.pk %}
+        <span class="fa fa-save"></span>
+        Save {{ object_title }}
+        {% else %}
+        <span class="fa fa-user-plus"></span>
+        Add {{ object_title }}
+        {% endif %}
+        </button>
+        </div>
+        {% if False and form.instance.pk %}
+        <div class="col-md-2 col-md-offset-4">
+        <button class="btn btn-lg btn-danger client-delete-btn" data-url="{% url delete_object_urlname form.instance.pk %}"
+            data-success-url="{% url list_object_urlname %}">
+        <span class="fa fa-user-times"></span> Delete {{ object_title }}</button>
+        </div>
+        {% endif %}
+    </div>
+</form>
+
+{% endblock %}

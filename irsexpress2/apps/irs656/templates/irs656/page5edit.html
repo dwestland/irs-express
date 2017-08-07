@@ -1,0 +1,16 @@
+{% extends 'irs656/form_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block form_content %}
+
+<div class="row">
+<div class="col-md-10 col-md-offset-1 irsform form656 form656-page-5">
+{{ form.as_table }}
+    <div class="alert alert-warning" role="alert"><strong>Note</strong>
+    <p>Note: The total months may not exceed a total of 24 months, including the first payment. Your first payment is considered to be month 1; therefore, the remainder of the payments must be made within 23 months for a total of 24.</p></div>
+    <div class="alert alert-warning" role="alert"><strong>Note</strong>
+    <p>You must continue to make these monthly payments while the IRS is considering the offer (waived if you are an individual or sole proprietorship and met the requirements for Low Income Certification) . Failure to make regular monthly payments will cause your offer to be returned with no appeal rights.</p></div>
+</div>
+</div>
+
+{% endblock %}

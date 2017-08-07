@@ -1,0 +1,18 @@
+{% extends 'irs_common/form_base.html' %}
+{% load staticfiles %}
+
+{% block formpages %}
+Pages:
+<ul class="nav nav-tabs">
+    <li role="presentation" class="{{ is_page1_active }}">
+        <a href="{% url '8821-page-1' client.pk %}">
+            <span class="fa fa-file-o"></span> Part 1 {% if form.instance.form.page1.pk %}<span class="text-success fa fa-check"></span>{% endif %}</a></li>
+    <li role="presentation" class="{{ is_page2_active }}">
+        <a href="{% url '8821-page-2' client.pk %}">
+            <span class="fa fa-file-o"></span> Part 2 {% if form.instance.form.page2.pk %}<span class="text-success fa fa-check"></span>{% endif %}</a></li>
+</ul>
+{% endblock %}
+
+{% block form_content %}
+TBD
+{% endblock %}

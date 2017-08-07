@@ -1,0 +1,296 @@
+
+.container {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.vpos-parent{
+    display: table;
+    table-layout: fixed;
+}
+
+.vbottom-cell{
+    display: table-cell;
+    vertical-align: bottom;
+    float: none;
+}
+
+.vmiddle-parent{
+    @extend .vpos-parent;
+}
+
+.vmiddle-cell{
+    display: table-cell;
+    vertical-align: middle;
+    float: none;
+}
+
+.form-group 
+.select2.select2-container {
+    position: relative;
+    width: 100% !important;
+    display: table-cell;
+}
+.form-group 
+.select2.select2-container span.selection .select2-selection--single{
+    height: 100% !important;
+}
+
+.form-group .bootstrap-switch {
+    margin: 2px 4px;
+}
+
+.brand
+{
+  background: url($static_url + '/img/logo_small.jpg') no-repeat left center;
+  background-size: 155px 35px;
+  background-position: 0px 5px;
+  padding-top: 10px;
+  border-radius: 15px;
+  padding-left: 40px;
+  padding-right: 10px;
+  margin-right: 20px;
+  height: 46px;
+  width: 155px;
+}
+
+td.leftcol {
+    text-align: right;
+    padding-right: 10px;
+    padding-top: 12px;
+    padding-bottom: 8px;
+    font-weight: bold;
+}
+td.rightcol {
+    text-align: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.xtooltip {
+    cursor: pointer;
+    padding-right: 10px;
+}
+
+table.text-center tr th {
+    text-align: center;
+}
+
+.table-header-rotated th.row-header{
+  width: auto;
+}
+
+.table-header-rotated th.rotate-45{
+  height: 80px;
+  width: 40px;
+  min-width: 40px;
+  max-width: 40px;
+  position: relative;
+  vertical-align: bottom;
+  padding: 0;
+  // font-size: 12px;
+  line-height: 0.8;
+}
+
+.table-header-rotated th.rotate-45 > div{
+  position: relative;
+  top: 0px;
+  left: 40px; /* 80 * tan(45) / 2 = 40 where 80 is the height on the cell and 45 is the transform angle*/
+  height: 100%;
+  -ms-transform:skew(-45deg,0deg);
+  -moz-transform:skew(-45deg,0deg);
+  -webkit-transform:skew(-45deg,0deg);
+  -o-transform:skew(-45deg,0deg);
+  transform:skew(-45deg,0deg);
+  overflow: hidden;
+  border-left: 1px solid #dddddd;
+  border-right: 1px solid #dddddd;
+  border-top: 1px solid #dddddd;
+}
+
+.table-header-rotated th.rotate-45 span {
+  -ms-transform:skew(45deg,0deg) rotate(315deg);
+  -moz-transform:skew(45deg,0deg) rotate(315deg);
+  -webkit-transform:skew(45deg,0deg) rotate(315deg);
+  -o-transform:skew(45deg,0deg) rotate(315deg);
+  transform:skew(45deg,0deg) rotate(315deg);
+  position: absolute;
+  bottom: 30px; /* 40 cos(45) = 28 with an additional 2px margin*/
+  left: -25px; /*Because it looked good, but there is probably a mathematical link here as well*/
+  display: inline-block;
+  // width: 100%;
+  width: 85px; /* 80 / cos(45) - 40 cos (45) = 85 where 80 is the height of the cell, 40 the width of the cell and 45 the transform angle*/
+  text-align: left;
+  // white-space: nowrap; /*whether to display in one line or not*/
+}
+
+.sortable {
+    color: #333399;
+    cursor: pointer;
+}
+.sortfield {
+    text-decoration: underline;
+}
+
+ul.nav li.dropdown:hover > ul.dropdown-menu {
+    display: block;    
+}
+
+.errorlist {
+  color: #e20c1c;
+}
+
+.vis-editable tr {
+    cursor: pointer;
+}
+
+.scrollable {
+    overflow: scroll;
+}
+
+.doc-status-success {
+  color: #119911;
+}
+
+.doc-status-error {
+  color: #991111;
+}
+
+.doc-status-error span {
+  cursor: pointer;
+}
+
+// .fa,
+.mfa-width-fix{
+  width: 16px;
+}
+
+.client-status {
+  font-weight: bold;
+}
+
+.client-status-btn span.fa {
+  width: 16px;
+}
+
+.client-status-active {
+  @extend .client-status;
+  color: green;
+}
+.client-status-closed {
+  @extend .client-status;
+  color: red;
+}
+.client-status-onhold {
+  @extend .client-status;
+  color: #d47500;
+}
+
+.doc-date {
+  text-align: right;
+}
+.doc-type {
+  text-align: center;
+}
+.doc-title {
+  text-align: left;
+}
+.doc-title a, .doc-title a:hover {
+  color: #666666;
+  text-decoration: none;
+}
+table.documents {
+  font-size: 120%;
+  vertical-align: middle;
+}
+
+.label.missingyear {
+  font-size: 120%;
+  line-height: 2;
+}
+
+
+.formelement-state_name span, .formelement-county span
+{
+    display: block;
+}
+
+// monkeypatching for each date element to fit whole container
+.formelement-birthdate span.select2.select2-container,
+.formelement-balance_date span.select2.select2-container,
+.formelement-period_start span.select2.select2-container,
+.formelement-period_end span.select2.select2-container,
+.formelement-completion_date span.select2.select2-container,
+.formelement-filed span.select2.select2-container,
+.formelement-dismissed span.select2.select2-container,
+.formelement-discharged span.select2.select2-container,
+.formelement-date_from span.select2.select2-container,
+.formelement-date_to span.select2.select2-container,
+.formelement-whenreceive span.select2.select2-container,
+.formelement-date span.select2.select2-container,
+.formelement-bank_balance_date span.select2.select2-container,
+.formelement-loan_balance_date span.select2.select2-container,
+.formelement-cc_amount_owed_date span.select2.select2-container,
+.formelement-cc_amount_credit_date span.select2.select2-container,
+.formelement-cc_available_credit_date span.select2.select2-container,
+.formelement-purchase_date span.select2.select2-container,
+.formelement-final_payment_date span.select2.select2-container,
+.formelement-date_due span.select2.select2-container,
+.formelement-attachment_date span.select2.select2-container,
+.formelement-attachment_date_bus span.select2.select2-container,
+.formelement-assessed_date span.select2.select2-container,
+.formelement-pp_assessed_date span.select2.select2-container,
+.formelement-preparer_date span.select2.select2-container,
+{
+    width: 30% !important;
+}
+select.date-field.form-control.select2-hidden-accessible {
+    display: none;
+}
+
+p.sugg span.suggestion {
+  font-weight: normal;
+  // text-decoration: 
+  border-bottom: 2px dotted;
+}
+p.sugg span.value {
+    font-weight: bold;
+    color: #9a0200;
+}
+p.sugg span.desc {
+    font-style: italic;
+    display: block;
+    font-weight: normal;
+}
+
+.field-required {
+    color: #9a0200;
+}
+
+div#formaffix {
+    width: 180px;
+    z-index: 1000;
+}
+
+
+.irsexpress_info {
+    font-weight: bold;
+}
+.irsexpress_info .data {
+    color: #9a0200;
+}
+.suggestion .sugg_source {
+    font-weight: bold;
+}
+.suggestion .decision, .decision {
+    color: #9a0200;
+    font-weight: bold;
+}
+
+.payment_advice {
+    cursor: pointer;
+    color: #3399e3;
+    text-decoration: underline;
+    padding-left: 10px;
+}

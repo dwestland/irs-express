@@ -1,0 +1,231 @@
+{% extends 'base.html' %}
+{% load css_helpers %}
+
+{% block popuptitle %}{% if form.instance.pk %}Client Control Panel {{ form.instance.id }}{% else %}New Client{% endif %}{% endblock %}
+{% block title %}{% if form.instance.pk %}Client Control Panel {{ form.instance.id }}{% else %}New Client{% endif %}{% endblock %}
+
+{% block content %}
+{% with if_edit_active='active' %}{% include 'clients/client_menu.html' %}{% endwith %}
+<div class="row">
+    <div class="col-md-3 col-md-offset-4">
+        <h1 class="text-center">
+        {% if form.instance.pk %}Client Control Panel{% else %}Add New Client{% endif %}
+        </h1>
+    </div>
+</div>
+{% block popupbody %}
+
+<form class="form-horizontal" method="POST" action="{{ request.path }}">
+    {% csrf_token %}
+    <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+    {{ form.non_field_errors }}
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-4 col-md-offset-1">
+        <span>&nbsp;</span>
+        <div class="form-group" error_messages="{{ form.first_name.errors|commajoin }}">
+            <div class="col-sm-4 control-label">{{ form.first_name.label_tag}}</div>
+            <div class="input-group col-sm-8">
+            <div class="input-group-addon"><span class="fa fa-user"></span></div>
+            {{ form.first_name }}
+            </div>
+        </div>
+        <div class="form-group" error_messages="{{ form.middle_name.errors|commajoin }}">
+            <div class="col-sm-4 control-label">{{ form.middle_name.label_tag}}</div>
+            <div class="input-group col-sm-8">
+            <div class="input-group-addon"><span class="fa fa-user"></span></div>
+            {{ form.middle_name }}
+            </div>
+        </div>
+        <div class="form-group" error_messages="{{ form.last_name.errors|commajoin }}">
+            <div class="col-sm-4 control-label">{{ form.last_name.label_tag}}</div>
+            <div class="input-group col-sm-8">
+            <div class="input-group-addon"><span class="fa fa-user"></span></div>
+            {{ form.last_name }}
+            </div>
+        </div>
+        <div class="form-group" error_messages="{{ form.email.errors|commajoin }}">
+            <div class="col-sm-4 control-label">{{ form.email.label_tag}}</div>
+            <div class="input-group col-sm-8">
+            <div class="input-group-addon"><span class="fa fa-at"></span></div>
+            {{ form.email }}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <span>&nbsp;</span>
+        <div class="form-group" error_messages="{{ form.phone_home.errors|commajoin }}">
+            <div class="col-sm-4 col-sm-offset-2 control-label">{{ form.phone_home.label_tag}}</div>
+            <div class="input-group col-sm-6">
+            <div class="input-group-addon"><span class="fa fa-phone"></span></div>
+            {{ form.phone_home }}
+            </div>
+        </div>
+        <div class="form-group" error_messages="{{ form.phone_cell.errors|commajoin }}">
+            <div class="col-sm-4 col-sm-offset-2 control-label">{{ form.phone_cell.label_tag}}</div>
+            <div class="input-group col-sm-6">
+            <div class="input-group-addon"><span class="fa fa-mobile"></span></div>
+            {{ form.phone_cell }}
+            </div>
+        </div>
+        <div class="form-group" error_messages="{{ form.phone_work.errors|commajoin }}">
+            <div class="col-sm-4 col-sm-offset-2 control-label">{{ form.phone_work.label_tag}}</div>
+            <div class="input-group col-sm-6">
+            <div class="input-group-addon"><span class="fa fa-phone"></span></div>
+            {{ form.phone_work }}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-1 text-left">
+        <span>Primary</span>
+        <div class="form-group">
+        <input type="radio" name="primary_phone_type" class="form-control switch-radio2" id="id_primary_phone_type_1" value="home" {% if form.instance.primary_phone_type == 'home' %}checked{% endif %} data-on-text="Yes" data-off-text="No" data-on-color="success">
+        </div>
+        <div class="form-group">
+        <input type="radio" name="primary_phone_type" class="form-control switch-radio2" id="id_primary_phone_type_2" value="cell" {% if form.instance.primary_phone_type == 'cell' %}checked{% endif %} data-on-text="Yes" data-off-text="No" data-on-color="success">
+        </div>
+        <div class="form-group">
+        <input type="radio" name="primary_phone_type" class="form-control switch-radio2" id="id_primary_phone_type_3" value="work" {% if form.instance.primary_phone_type == 'work' %}checked{% endif %} data-on-text="Yes" data-off-text="No" data-on-color="success">
+        </div>
+    </div>
+    </div>
+
+    <div class="row">
+    <div class="col-md-5 col-md-offset-1">
+        <div class="form-group" error_messages="{{ form.street.errors|commajoin }}">
+            <div class="col-sm-3 control-label">{{ form.street.label_tag}}</div>
+            <div class="input-group col-sm-9">
+            <div class="input-group-addon"><span class="fa fa-map-marker"></span></div>
+            {{ form.street }}
+            </div>
+        </div>
+        <div class="form-group" error_messages="{{ form.apt.errors|commajoin }}">
+            <div class="col-sm-3 control-label">{{ form.apt.label_tag}}</div>
+            <div class="input-group col-sm-4">
+            <div class="input-group-addon"><span class="fa fa-building"></span></div>
+            {{ form.apt }}
+            </div>
+        </div>
+        <div class="form-group" error_messages="{{ form.zipcode.errors|commajoin }}">
+            <div class="col-sm-3 control-label">{{ form.zipcode.label_tag}}</div>
+            <div class="input-group col-sm-4">
+            <div class="input-group-addon"><span class="fa fa-envelope-o"></span></div>
+            {{ form.zipcode }}
+            </div>
+            <div class="col-sm-5">&nbsp;</div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="form-group" error_messages="{{ form.city.errors|commajoin }}">
+            <div class="col-sm-3 control-label">{{ form.city.label_tag}}</div>
+            <div class="input-group col-sm-9">
+            <div class="input-group-addon"><span class="fa fa-map-o"></span></div>
+            {{ form.city }}
+            </div>
+        </div>
+        <div class="form-group" error_messages="{{ form.county.errors|commajoin }}">
+            <div class="col-sm-3 control-label">{{ form.county.label_tag}}</div>
+            <div class="input-group col-sm-9">
+            <div class="input-group-addon"><span class="fa fa-envelope-o"></span></div>
+            {{ form.county }}
+            </div>
+        </div>
+        <div class="form-group" error_messages="{{ form.state_name.errors|commajoin }}">
+            <div class="col-sm-3 control-label">{{ form.state_name.label_tag}}</div>
+            <div class="input-group col-sm-9">
+            <div class="input-group-addon"><span class="fa fa-envelope-o"></span></div>
+            {{ form.state_name }}
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <div class="row">
+    <div class="col-md-3 col-md-offset-4">
+        <h3 class="text-center">Missing Tax Returns</h3>
+    </div>
+    </div>
+    <div class="row justyears">
+    <div class="col-md-8 col-md-offset-1">
+
+        <div class="row">
+            <div class="col-md-2">&nbsp;</div>
+            <div class="col-md-2">
+                <div class="form-group" error_messages="{{ form.taxmiss_y0.errors|commajoin }}">
+                <div class="col-sm-2 control-label">&nbsp;</div><div class="input-group col-sm-8">{{ form.taxmiss_y0 }}</div></div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group" error_messages="{{ form.taxmiss_y1.errors|commajoin }}">
+                <div class="col-sm-2 control-label">&nbsp;</div><div class="input-group col-sm-8">{{ form.taxmiss_y1 }}</div></div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group" error_messages="{{ form.taxmiss_y2.errors|commajoin }}">
+                <div class="col-sm-2 control-label">&nbsp;</div><div class="input-group col-sm-8">{{ form.taxmiss_y2 }}</div></div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group" error_messages="{{ form.taxmiss_y3.errors|commajoin }}">
+                <div class="col-sm-2 control-label">&nbsp;</div><div class="input-group col-sm-8">{{ form.taxmiss_y3 }}</div></div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group" error_messages="{{ form.taxmiss_y4.errors|commajoin }}">
+                <div class="col-sm-2 control-label">&nbsp;</div><div class="input-group col-sm-8">{{ form.taxmiss_y4 }}</div></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">&nbsp;</div>
+            <div class="col-md-2">
+                <div class="form-group" error_messages="{{ form.taxmiss_y5.errors|commajoin }}">
+                <div class="col-sm-2 control-label">&nbsp;</div><div class="input-group col-sm-8">{{ form.taxmiss_y5 }}</div></div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group" error_messages="{{ form.taxmiss_y6.errors|commajoin }}">
+                <div class="col-sm-2 control-label">&nbsp;</div><div class="input-group col-sm-8">{{ form.taxmiss_y6 }}</div></div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group" error_messages="{{ form.taxmiss_y7.errors|commajoin }}">
+                <div class="col-sm-2 control-label">&nbsp;</div><div class="input-group col-sm-8">{{ form.taxmiss_y7 }}</div></div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group" error_messages="{{ form.taxmiss_y8.errors|commajoin }}">
+                <div class="col-sm-2 control-label">&nbsp;</div><div class="input-group col-sm-8">{{ form.taxmiss_y8 }}</div></div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group" error_messages="{{ form.taxmiss_y9.errors|commajoin }}">
+                <div class="col-sm-2 control-label">&nbsp;</div><div class="input-group col-sm-8">{{ form.taxmiss_y9 }}</div></div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+
+    <div class="row">
+    <div class="col-md-2 col-md-offset-4">
+    <button class="btn btn-lg btn-primary formuploadbtn">
+    {% if form.instance.pk %}
+    <span class="fa fa-save"></span>
+    Save Client
+    {% else %}
+    <span class="fa fa-user-plus"></span>
+    Add Client
+    {% endif %}
+    </button>
+    </div>
+    {% if form.instance.pk and user.is_admin %}
+    <div class="col-md-2 col-md-offset-4">
+    <button class="btn btn-lg btn-danger client-delete-btn" data-url="{% url 'delete_client' form.instance.pk %}"
+        data-success-url="{% url 'clients_list' %}">
+    <span class="fa fa-user-times"></span> Delete Client</button>
+    </div>
+    {% endif %}
+    </div>
+</form>
+
+{% endblock %}
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% if user.is_authenticated %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+Home
+{% endblock %}
+{% else %}
+{% include 'partials/notlogged_home.html' %}
+{% endif %}

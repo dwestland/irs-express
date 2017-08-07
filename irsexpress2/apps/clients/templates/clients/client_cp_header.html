@@ -1,0 +1,45 @@
+{% load phonenums %}
+{% load func_helpers %}
+{% if not ajax %}<span class="cp-content" data-src="{% url 'client_cp' client.pk %}?ee={{ cp_edit_enabled }}">{% endif %}
+
+<div class="panel panel-default">
+<div class="panel-body row vmiddle-parent">{% csrf_token %}
+    <div class="col-md-4 h2 vmiddle-cell client-id" id="object_data" data-objectid="{{ client.pk }}">
+    {{ client.last_name }}, {{ client.first_name }}
+    </div>
+    <div class="col-md-2 vmiddle-cell text-nowrap">
+    Status <span class="client-status client-status-{{ client.status }}">{{ client.get_status_display }}</span><br/>
+    {% if cp_edit_enabled %}
+    {% if user.is_admin %}
+    <button class="btn btn-xs btn-link {% if client.stage <= 1 %}disabled{% else %}stagebtn{% endif%}" data-newstage="{{ client|arg:-1|call:'get_new_stage' }}"><span class="fa fa-arrow-left"></span> Prev</button>
+    {% endif %}
+        <span class="stage-text">Stage {{ client.stage }}</span>
+    <button class="btn btn-xs btn-link {% if client.stage >= client.MAX_STAGE %}disabled{% else %}stagebtn{% endif%}" data-newstage="{{ client|arg:1|call:'get_new_stage' }}">Next <span class="fa fa-arrow-right"></span></button>
+    {% else %}
+    <span class="stage-text">Stage {{ client.stage }}</span>
+    {% endif %}
+    <br/>
+    Case Opened {{ client.case_opened|date:"d/m/Y" }} |
+    Past Due: <span class="
+    {% if client.past_due < 0 %}text-success
+    {% elif client.past_due == 0 %}text-warning text-strong
+    {% else %}text-danger text-strong
+    {% endif %}
+    ">{{ client.past_due }}</span> day{{ client.past_due|pluralize }}
+    </div>
+    <div class="col-md-3 vmiddle-cell">
+        {{ client.address }}
+    </div>
+    <div class="col-md-2 vmiddle-cell text-nowrap">
+        <span class="fa fa-phone mfa-width-fix"></span> H: {{ client.phone_home|phonenum }}
+            {% if client.primary_phone_type == 'home' %}<span class="text-success fa fa-check"> Primary</span>{% endif %}<br/>
+        <span class="fa fa-mobile mfa-width-fix"></span> C: {{ client.phone_cell|phonenum }}
+            {% if client.primary_phone_type == 'cell' %}<span class="text-success fa fa-check"> Primary</span>{% endif %}<br/>
+        <span class="fa fa-phone mfa-width-fix"></span> W: {{ client.phone_work|phonenum }}
+            {% if client.primary_phone_type == 'work' %}<span class="text-success fa fa-check"> Primary</span>{% endif %}<br/>
+    </div>
+    
+</div>
+</div>
+
+{% if not ajax %}</span>{% endif %}

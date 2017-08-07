@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% load css_helpers %}
+
+{% block title %}Control Panel - {{ client.title }}{% endblock %}
+
+{% block content %}
+{% with if_cp_active='active' %}{% include 'clients/client_menu.html' %}{% endwith %}
+<div class="row">
+    <div class="col-md-3 col-md-offset-4">
+        <h1 class="text-center">
+            Client Control Panel
+        </h1>
+    </div>
+</div>
+{% block popupbody %}
+
+{% with cp_edit_enabled='true' %}{% include 'clients/client_cp_header.html' %}{% endwith %}
+
+<div class="row">
+<div class="col-md-5">
+    <div class="row">
+    <div class="col-md-12 text-center">
+        <h4>Client Status</h4>
+        <div class="btn-group" role="group" aria-label="Client Status">
+            <button type="button" class="btn btn-success btn-sm client-status-btn {% if object.status == 'active' %}active{% endif %}" data-status="active"><span class="fa {% if object.status == 'active' %}fa-check{% endif %}"></span> Active</button>
+            <button type="button" class="btn btn-warning btn-sm client-status-btn {% if object.status == 'onhold' %}active{% endif %}" data-status="onhold"><span class="fa {% if object.status == 'onhold' %}fa-check{% endif %}"></span> On Hold</button>
+            <button type="button" class="btn btn-danger btn-sm client-status-btn {% if object.status == 'closed' %}active{% endif %}" data-status="closed"><span class="fa {% if object.status == 'closed' %}fa-check{% endif %}"></span> Closed</button>
+        </div>
+    </div>
+    </div>
+    <br/>
+    <div class="row">
+    <div class="col-md-12">
+        <h4 class="text-center">Forms</h4>
+        <br/>
+        <div class="row">
+            <div class="col-md-5">
+            <a href="{% url '8821-page-1' object.pk %}" class="btn btn-primary btn-block pdfedit-btn" data-pdfname="8821"><span class="fa fa-edit"></span> 8821 Edit</a>
+            </div>
+            <div class="col-md-5">
+            {% if client.get_form_8821.ready %}
+            <a href="{% url '8821-pdf' client.pk %}" class="btn btn-primary btn-block pdfget-btn" data-pdfname="8821"><span class="fa fa-file-pdf-o"></span> 8821 PDF</a>
+            {% else %}
+            <button class="btn btn-primary btn-block pdfget-btn disabled" data-pdfname="8821"><span class="fa fa-file-pdf-o"></span> 8821 PDF</button>
+            {% endif %}
+            </div>
+            <div class="col-md-2 text-nowrap h4"><span class="badge badge-primary">{{ client.get_form_8821.percent_completed }} %</span></div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-md-5">
+            <a href="{% url 'spouse-8821-page-1' object.pk %}" class="btn btn-primary btn-block pdfedit-btn" data-pdfname="spouse-8821"><span class="fa fa-edit"></span> Spouse 8821 Edit</a>
+            </div>
+            <div class="col-md-5">
+            {% if client.get_form_8821spouse.ready %}
+            <a href="{% url 'spouse-8821-pdf' client.pk %}" class="btn btn-primary btn-block pdfget-btn" data-pdfname="spouse-8821"><span class="fa fa-file-pdf-o"></span> Spouse 8821 PDF</a>
+            {% else %}
+            <button class="btn btn-primary btn-block pdfget-btn disabled" data-pdfname="Spouse 8821"><span class="fa fa-file-pdf-o"></span> Spouse 8821 PDF</button>
+            {% endif %}
+            </div>
+            <div class="col-md-2 text-nowrap h4"><span class="badge badge-primary">{{ client.get_form_8821spouse.percent_completed }} %</span></div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-md-5">
+            <a href="{% url '433a-page-1' object.pk %}" class="btn btn-primary btn-block pdfedit-btn" data-pdfname="443a"><span class="fa fa-edit"></span> 433-A Edit</a>
+            </div>
+            <div class="col-md-5">
+            {% if client.get_form_433a.ready %}
+            <a href="{% url '433a-pdf' client.pk %}" class="btn btn-primary btn-block pdfget-btn" data-pdfname="443a"><span class="fa fa-file-pdf-o"></span> 433-A PDF</a>
+            {% else %}
+            <button class="btn btn-primary btn-block pdfget-btn disabled" data-pdfname="443a"><span class="fa fa-file-pdf-o"></span> 433-A PDF</button>
+            {% endif %}
+            </div>
+            <div class="col-md-2 text-nowrap h4"><span class="badge badge-primary">{{ client.get_form_433a.percent_completed }} %</span></div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-md-5">
+            <a href="{% url '9465-page-1' object.pk %}" class="btn btn-primary btn-block pdfedit-btn" data-pdfname="9465"><span class="fa fa-edit"></span> 9465 Edit</a>
+            </div>
+            <div class="col-md-5">
+            {% if client.get_form_9465.ready %}
+            <a href="{% url '9465-pdf' client.pk %}" class="btn btn-primary btn-block pdfget-btn" data-pdfname="9465"><span class="fa fa-file-pdf-o"></span> 9465 PDF</a>
+            {% else %}
+            <button class="btn btn-primary btn-block pdfget-btn disabled" data-pdfname="9465"><span class="fa fa-file-pdf-o"></span> 9465 PDF</button>
+            {% endif %}
+            </div>
+            <div class="col-md-2 text-nowrap h4"><span class="badge badge-primary">{{ client.get_form_9465.percent_completed }} %</span></div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-md-5">
+            <a href="{% url '656-page-1' object.pk %}" class="btn btn-primary btn-block pdfedit-btn" data-pdfname="656"><span class="fa fa-edit"></span> 656 Edit</a>
+            </div>
+            <div class="col-md-5">
+            {% if client.get_form_656.ready %}
+            <a href="{% url '656-pdf' client.pk %}" class="btn btn-primary btn-block pdfget-btn" data-pdfname="656"><span class="fa fa-file-pdf-o"></span> 656 PDF</a>
+            {% else %}
+            <button class="btn btn-primary btn-block pdfget-btn disabled" data-pdfname="656"><span class="fa fa-file-pdf-o"></span> 656 PDF</button>
+            {% endif %}
+            </div>
+            <div class="col-md-2 text-nowrap h4"><span class="badge badge-primary">{{ client.get_form_656.percent_completed }} %</span></div>
+        </div>
+    </div>
+    </div>
+        <br/>
+    <div class="row">
+    <div class="col-md-12">
+        <h4 class="text-center">Missing Tax Return Years</h4>
+        {% for year in client.get_taxreturn_years_list %}
+        <span class="label label-danger missingyear">{{ year }}</span>
+        {% endfor %}
+    </div>
+    </div>
+</div>
+<div class="col-md-7">
+    <div class="row vpos-parent">
+    <div class="col-md-2 vbottom-cell"><h3 class="vbottom-cell">Summary</h3></div>
+    <div class="col-md-9 vbottom-cell text-left">
+        <span class="text-danger summary-notsaved-indicator hidden"><span class="fa fa-asterisk"></span> not saved</span>
+        <span class="text-success summary-saved-indicator hidden"><span class="fa fa-check"></span> saved</span>
+    </div>
+    <div class="col-md-1 vbottom-cell text-right">
+        <button class="btn btn-primary btn-sm summary-save-btn"><span class="fa fa-save"></span> Save</button>
+    </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <textarea class="form-control" rows="10" id="client_summary">{{ object.summary }}</textarea>
+            <textarea class="hidden" id="client_summary_saved">{{ object.summary }}</textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Notes</h4>
+            <span class="notes-list" data-src="{% url 'client_notes' client.pk %}">
+            {% include 'clients/notes_list.html' %}
+            </span>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'irs433a/form_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block form_content %}
+
+<div class="row">
+<div class="col-md-10 col-md-offset-1 irsform form433a form433a-page-6">
+{{ form.as_table }}
+</div>
+</div>
+
+<span class="irs-suggestions-data hidden">{{ suggestions }}</span>
+
+{% endblock %}

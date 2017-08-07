@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}IRS Form {{ formnameid }} - {{ client.title }}{% endblock %}
+
+{% block content %}
+
+{% with if_cp_active='active' %}{% include 'clients/client_menu.html' %}{% endwith %}
+{% include 'clients/client_cp_header.html' %}
+
+<div class="row">
+    <div class="col-md-5"><h2>IRS Form {{ formnameid }}</h2></div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+    <div class="alert alert-warning" role="alert"><p><strong>Warning!</strong> Any data changed in this form will be saved only after you click "Previous Page" or "Next Page" or "Finish" buttons. If you leave this page before saving - all not saved data will be lost.</p></div>
+    </div>
+</div>
+
+<img src="{% static 'img/progress_large.gif' %}" class="content-load-wait" data-content-element="#pageform">
+<span class="hidden {{ formnameid }}-pageactive" data-value="{{ page_active }}"></span>
+
+<form class="form form-horizontal hidden" id="pageform" role="form" method="POST" action="{{ request.path }}">
+{% csrf_token %}
+
+
+{% block form_top_buttons %}
+<div class="row">
+    <div class="col-md-3 col-md-offset-1">
+        {% if prev_btn_title and back_url_name %}
+        <button type="submit" class="btn btn-success btn-block xbtn-lg irsform-form-save form_prev_page" data-url="{% url back_url_name client.id %}"><span class="fa fa-chevron-circle-left fa-lg"></span> {{ prev_btn_title }}</button>
+        {% else %}&nbsp;{% endif %}
+    </div>
+    <div class="col-md-3 col-md-offset-1">
+
+        <button type="submit" class="btn btn-primary btn-block xbtn-lg irsform-form-save hidden form_save_page"><span class="fa fa-save fa-lg"></span> Save Page</button>
+    </div>
+    <div class="col-md-3 col-md-offset-1">
+        {% if next_btn_title and success_url_name %}
+        <button type="submit" class="btn btn-success btn-block xbtn-lg irsform-form-save form_next_page" data-url="{% url success_url_name client.id %}">{{ next_btn_title }} <span class="fa fa-chevron-circle-right fa-lg"></span></button>
+        {% else %}&nbsp;{% endif %}
+    </div>
+</div>
+{% endblock %}
+
+<div class="row">
+    <div class="col-md-12">
+        {% if client.pk %}
+        {% block formpages %}
+        Pages:
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="{{ is_page1_active }}">
+                <a href="#">
+                    <span class="fa fa-file-o"></span> Page 1</a></li>
+        </ul>
+        {% endblock %}
+        {% else %}
+        &nbsp;
+        {% endif %}
+    </div>
+</div>
+
+<h3>{{ form.title }}</h3>
+
+{% block subformlist_loader %}
+{% for subform_prefix, subform_classname, subform_url in subforms %}
+    {% if subform_prefix and subform_classname and subform_url %}
+    <span class="hidden" id="{{ subform_prefix }}_form_url"
+        data-subform-name="{{ subform_prefix }}"
+        data-url="{% url subform_url client.pk %}"
+        data-subform-selector=".{{ subform_classname }}"></span>
+    {% endif %}
+{% endfor %}
+{% endblock %}
+
+<div class="" id="formaffix" data-spy="affix" data-xoffset-top="205">
+    <div class="well">
+    Form is not saved<br/>
+    <button type="submit" class="btn btn-primary btn-block irsform-form-save form_save_page" ><span class="fa fa-save"></span> Save</button>
+    </div>
+</div>
+<input class="hidden form-id" type="hidden" name="id" value="{% if form.instance.pk %}{{ form.instance.pk }}{% endif %}"/>
+{% block form_content %}
+TBD
+{% endblock %}
+
+<hr/>
+{% block form_bottom_buttons %}
+<div class="row">
+    <div class="col-md-3 col-md-offset-1">
+        {% if prev_btn_title and back_url_name %}
+        <button type="submit" class="btn btn-success btn-block xbtn-lg irsform-form-save form_prev_page" data-url="{% url back_url_name client.id %}"><span class="fa fa-chevron-circle-left fa-lg"></span> {{ prev_btn_title }}</button>
+        {% else %}&nbsp;{% endif %}
+    </div>
+    <div class="col-md-3 col-md-offset-1">
+        <button type="submit" class="btn btn-primary btn-block xbtn-lg irsform-form-save hidden form_save_page" ><span class="fa fa-save fa-lg"></span> Save Page</button>
+    </div>
+    <div class="col-md-3 col-md-offset-1">
+        {% if next_btn_title and success_url_name %}
+        <button type="submit" class="btn btn-success btn-block xbtn-lg irsform-form-save form_next_page" data-url="{% url success_url_name client.id %}">{{ next_btn_title }} <span class="fa fa-chevron-circle-right fa-lg"></span></button>
+        {% else %}&nbsp;{% endif %}
+    </div>
+</div>
+{% endblock %}
+
+</form>
+
+{% endblock %}

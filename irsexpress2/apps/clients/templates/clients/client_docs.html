@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load css_helpers %}
+
+{% block content %}
+{% with if_docs_active='active' %}{% include 'clients/client_menu.html' %}{% endwith %}
+<div class="row">
+    <div class="col-md-3 col-md-offset-4">
+        <h1 class="text-center">
+            Client Documents
+        </h1>
+    </div>
+</div>
+{% block popupbody %}
+
+{% include 'clients/client_cp_header.html' %}
+
+<div class="row vpos-parent">
+    <div class="col-md-5 col-md-offset-2 vmiddle-cell"><h3>Existing Documents</h3></div>
+    <div class="col-md-3 vmiddle-cell">
+        <button class="btn btn-primary edit-notedoc-btn" data-url="{% url 'client_doc_upload' pk=object.pk %}"><span class="fa fa-upload"></span> New Document</button>
+    </div>
+    <div class="col-md-2 vmiddle-cell">&nbsp;</div>
+</div>
+
+{% with note_edit_enabled=True %}
+<span class="notes-list" data-src="{% url 'client_docs' client.pk %}?ee={{ note_edit_enabled }}">
+{% include 'clients/documents_list.html' %}
+</span>
+{% endwith %}
+
+{% endblock %}
+{% endblock %}

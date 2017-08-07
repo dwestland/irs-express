@@ -1,0 +1,31 @@
+
+{% load obj_helpers %}
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            {% if note_edit_enabled %}<th class="col-md-1">&nbsp;</th>{% endif %}
+            <th class="col-md-1">Date</th>
+            <th class="col-md-2">Author</th>
+            <th class="col-md-8">Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for note in object.notes.all|slice:":10"%}
+        <tr>
+            {% if note_edit_enabled %}
+            <td class="text-nowrap">
+            {% if note|can_edit:user %}
+                <button class="btn btn-danger btn-sm delete-notedoc-btn" data-url="{% url 'client_note_edit' pk=object.pk note_pk=note.pk %}"><span class="fa fa-times"></span> </button>
+                <button class="btn btn-primary btn-sm edit-notedoc-btn" data-url="{% url 'client_note_edit' pk=object.pk note_pk=note.pk %}"><span class="fa fa-edit"></span> </button>
+            {% endif %}
+            &nbsp;
+            </td>
+            {% endif %}
+            <td>{{ note.date|date:"m/d/Y" }}</td>
+            <td>{{ note.author.get_identification }}</td>
+            <td>{{ note.text }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

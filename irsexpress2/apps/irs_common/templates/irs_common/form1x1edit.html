@@ -1,0 +1,9 @@
+
+    <tr class="{{ form.subform_classname }}"><td class="leftcol col-md-4">
+        {{ form.subform_title }}
+        <input type="hidden" clas="hidden form-id" name="{{ form.prefix }}-id" value="{% if form.instance.pk %}{{ form.instance.pk }}{% endif %}"/>
+        </td>
+        <td class="rightcol col-md-8">
+        {{ form.as_table }}
+        </td>
+    </tr>

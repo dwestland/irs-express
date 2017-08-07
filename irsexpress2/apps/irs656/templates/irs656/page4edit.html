@@ -1,0 +1,36 @@
+{% extends 'irs656/form_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block form_content %}
+
+<div class="row">
+<div class="col-md-10 col-md-offset-1 irsform form656 form656-page-4">
+<div>
+    <p>Do you qualify for Low-Income Certification? You qualify if your gross monthly household income is less than or equal to the amount shown in the chart below based on your family size and where you live. If you qualify, you are not required to submit any payments during the consideration of your offer.<br/><b>Businesses other than sole proprietorships do not qualify for the low income waiver</b>.</p>
+    <table class="table table-condensed table-striped text-center">
+        <thead>
+            <tr>
+                <th>Size of family unit</th>
+                <th>48 contiguous states and D.C.</th>
+                <th>Hawaii</th>
+                <th>Alaska</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td>$2,431</td><td>$2,796</td><td>$3,038</td></tr>
+            <tr><td>2</td><td>$3,277</td><td>$3,769</td><td>$4,096</td></tr>
+            <tr><td>3</td><td>$4,123</td><td>$4,742</td><td>$5,154</td></tr>
+            <tr><td>4</td><td>$4,969</td><td>$5,715</td><td>$6,213</td></tr>
+            <tr><td>5</td><td>$5,815</td><td>$6,688</td><td>$7,271</td></tr>
+            <tr><td>6</td><td>$6,660</td><td>$7,660</td><td>$8,329</td></tr>
+            <tr><td>7</td><td>$7,506</td><td>$8,633</td><td>$9,388</td></tr>
+            <tr><td>8</td><td>$8,352</td><td>$9,606</td><td>$10,446</td></tr>
+            <tr><td>For each additional person, add</td><td>$846</td><td>$973</td><td>$1,058</td></tr>
+        </tbody>
+    </table>
+</div>
+{{ form.as_table }}
+</div>
+</div>
+
+{% endblock %}

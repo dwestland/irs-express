@@ -1,0 +1,25 @@
+{% extends 'irs656/form_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block form_content %}
+
+<div class="row">
+<div class="col-md-10 col-md-offset-1 irsform form656 form656-page-6">
+<div>
+    <p>If you want your payment to be applied to a specific tax year and a specific tax debt, please tell us the tax form below and tax year/quarter.</p>
+    <p>If you do not designate a preference, we will apply any money you send to the government's best interest. If you wish
+to designate any payments not included with this offer, you must designate a preference for each payment at the time the payment is made. However, you cannot designate the $186 application fee or any payment after the IRS accepts the offer.</p>
+    <p>If you are paying <b>more than</b> the required payment when you submit your offer and want any part of that payment treated as a deposit, check the box below and insert the amount. Deposits will be refunded if the offer is rejected, returned, or withdrawn, unless you request it to be applied to your tax debt.</p>
+    <div class="alert alert-warning" role="alert"><strong>CAUTION!</strong>
+    <p>Do NOT designate the amounts sent in with your offer to cover the down payment and application fee as "deposits." Doing so will result in the return of your offer.</p></div>
+</div>
+{{ form.as_table }}
+    <div>
+        <h4>Making Your Payment</h4>
+        <p><b>Include separate checks for the payment and application fee.</b></p>
+        <p>Make checks payable to the “United States Treasury” and attach to the front of your Form 656, Offer in Compromise. All payments must be in U.S. dollars. <b>Do not send cash.</b> Send a separate application fee with each offer; do not combine it with any other tax payments, as this may delay processing of your offer. Your offer will be returned to you if the application fee and the required payment is not included, or if your check is returned for insufficient funds.</p>
+    </div>
+</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "user_auth/registration/form.html" %}
+
+{% block pagename %}
+{% if form.instance.pk %}
+Edit User
+{% else %}
+Create New User
+{% endif %}
+{% endblock %}
+
+{% block submitbuttonname %}
+{% if form.instance.pk %}
+Update User
+{% else %}
+<span class="fa fa-user-plus"></span> Create User
+{% endif %}
+{% endblock %}
+
+{% block submiturl %}
+{% if form.instance.pk %}
+{% url 'edit_user' form.instance.pk %}
+{% else %}
+{% url 'user_new' %}
+{% endif %}
+{% endblock %}

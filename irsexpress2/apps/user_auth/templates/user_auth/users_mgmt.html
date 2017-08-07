@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Users List{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-6">
+        <h1 class="text-left">List of Users</h1>
+    </div>
+</div>
+
+<div class="row form-horizontal">
+    <div class="col-md-6 text-left">
+        <div class="form-group">
+            <div class="xinput-group col-sm-4">
+                <a href="{% url 'user_new' %}" class="btn btn-primary form-control"><span class="fa fa-user-plus"></span> New User</a>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-3 lead text-right">Filter</div>
+            <div class="input-group col-sm-8">
+                <div class="input-group-addon"><span class="fa fa-search"></span></div>
+                <input class="form-control input-filter" name="clientfilter" value="">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-9 paginated_content pagination-sortfield" data-field='display_name' data-asc='0'>
+        <img src="{% static 'img/progress_large.gif' %}">
+    </div>
+
+</div>
+{% endblock %}

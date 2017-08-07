@@ -1,0 +1,95 @@
+{% extends 'partials/popupform.html' %}
+
+{% block popuptitle %}Offer in Compromise Qualification Calculator{% endblock %}
+{% block modalsize %}modal-lg{% endblock %}
+{% block formsavebtn %}{% endblock %}
+
+{% block popupbody %}
+
+<div class="row text-center">
+    <div class="col-md-3"><label for="pp_debt_total">Total debt owed to the IRS</label></div>
+    <div class="col-md-4"><label for="pp_monthly_income">Tax Payer's available monthly income</label></div>
+    <div class="col-md-5"><label for="pp_assessed_date">IRS Assessed Date</label></div>
+</div>
+
+<div class="row text-center oic-calculator">
+    <div class="col-md-3">
+        <div class="form-group">
+            <div class="col-sm-2 control-label">&nbsp;</div>
+            <div class="input-group col-sm-7">
+            <div class="input-group-addon"><span class="fa fa-usd"></span></div>
+                {{ form.pp_debt_total }}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <div class="col-sm-2 control-label">&nbsp;</div>
+            <div class="input-group col-sm-7">
+            <div class="input-group-addon"><span class="fa fa-usd"></span></div>
+                {{ form.pp_monthly_income }}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5 formelement-pp_assessed_date">
+        {{ form.pp_assessed_date }}
+    </div>
+</div>
+
+<div class="row text-center pp-calculation">
+    <div class="col-md-8 col-md-offset-2">
+        The Taxpayer's statute of limitation expires: <span id="pp_statute_exp_date" class="decision"></span>
+    </div>
+</div>
+<div class="row text-center pp-calculation">
+    <div class="col-md-8 col-md-offset-2">
+        There are <span id="pp_statute_months_avail" class="decision"></span> months remaining until the end of the statute.
+    </div>
+</div>
+<div class="row text-center pp-calculation">
+    <div class="col-md-8 col-md-offset-2">
+        The Taxpayer can pay $ <span id="pp_can_pay" class="number-field decision"></span>
+    </div>
+</div>
+<div class="row text-center pp-calculation">
+    <div class="col-md-8 col-md-offset-2">
+        The Taxpayer <span id="pp_suggestion_qualify" class="decision"></span> qualify for an Offer in Compromise
+    </div>
+</div>
+<div class="row text-center pp-calculation">
+    <div class="col-md-8 col-md-offset-2">
+        Recommended offer amount: $ <span id="pp_suggested_amount" class="number-field decision"></span>
+    </div>
+</div>
+
+<hr/>
+
+<h3 class="text-center">Offer in Compromise Payment Calculator</h3>
+
+<div class="row text-center form form-horizontal">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="form-group">
+            <div class="col-sm-5 control-label"><label for="pp_offer_amount">Total Offer Amount</label></div>
+            <div class="input-group col-sm-5">
+            <div class="input-group-addon"><span class="fa fa-usd"></span></div>
+                {{ form.pp_offer_amount }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row text-center pp-calculation2">
+    <div class="col-md-8 col-md-offset-2">
+        20% of Offer Amount: $ <span id="pp_initial_payment" class="number-field decision"></span>
+    </div>
+</div>
+<br/>
+<div class="row text-center text-nowrap pp-calculation2">
+    <div class="col-md-2 col-md-offset-1">Payment 1:<br/>$ <span class="number-field decision" id="pp_payment_1"></span></div>
+    <div class="col-md-2">Payment 2:<br/>$ <span class="number-field decision" id="pp_payment_2"></span></div>
+    <div class="col-md-2">Payment 3:<br/>$ <span class="number-field decision" id="pp_payment_3"></span></div>
+    <div class="col-md-2">Payment 4:<br/>$ <span class="number-field decision" id="pp_payment_4"></span></div>
+    <div class="col-md-2">Payment 5:<br/>$ <span class="number-field decision" id="pp_payment_5"></span></div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <title>IRSExpress2 :: {% block title %}Home{% endblock %}</title>
+        <meta name="description" content=""/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="author" content="Alexey Kolyanov"/>
+
+        {% load staticfiles %}
+
+        <!-- <link rel="shortcut icon" href="/static/favicon.ico"> -->
+        <!-- <link type="text/plain" rel="author" href="/static/humans.txt" /> -->
+
+        <link rel="stylesheet" href="{% static 'css/dependencies.min.css' %}?nocache=3">
+        <link rel="stylesheet" href="{% static 'css/screen.css' %}?nocache=3">
+    </head>
+    <body>
+        {% block maincontainer %}
+        {% include 'partials/nav.html' %}
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+        <div class="modal-element">
+        </div>
+        {% endblock %}
+
+        <footer>
+            <div>
+                &nbsp;
+            </div>
+        </footer>
+
+        <script src="{% static 'js/dependencies.js' %}?nocache=3"></script>
+        <script src="{% static 'js/app.js' %}?nocache=3"></script>
+
+        {% if false and debug %}
+            <script type='text/javascript' id="__bs_script__">//<![CDATA[
+                document.write("<script async src='http://HOST:8000/browser-sync/browser-sync-client.2.9.11.js'><\/script>".replace("HOST", location.hostname));
+            //]]></script>
+        {% endif %}
+    </body>
+</html>

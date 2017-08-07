@@ -1,0 +1,30 @@
+{% extends 'partials/list.html' %}
+{% load booltags %}
+{% load imagekit %}
+
+{% block listcontent %}
+
+<table class="table table-condensed table-hover text-center" data-editform="{% url 'new_client' %}">
+<tr>
+    <th class="sortable col-md-1">Actons</th>
+    <th data-sort='username' class="sortable col-md-1"><div><span>Login</span></div></th>
+    <th class="col-md-1"><div><span>Avatar</span></div></th>
+    <th data-sort='display_name' class="sortable col-md-5"><div><span>User Name</span></div></th>
+    <th data-sort='is_admin' class="sortable col-md-1"><div><span>Admin?</span></div></th>
+    <th data-sort='is_active' class="sortable col-md-1"><div><span>Active?</span></div></th>
+    <th data-sort='email' class="sortable col-md-4"><div><span>Email</span></div></th>
+</tr>
+{% for i in items %}
+    <tr data-id="{{ i.id }}">
+        <td><a href="{% url 'edit_user' i.pk %}"><span class="fa fa-edit"></span></a></td>
+        <td>{{ i.username }}</td>
+        <td>{% if i.avatar %}<img src="{{ i.avatar.url }}" class="img img-rounded" height="32" width="32" alt="Profile Picture" />{% endif %}</td>
+        <td>{{ i.display_name }}</td>
+        <td>{{ i.is_admin|bool2html }}</td>
+        <td>{{ i.is_active|bool2html }}</td>
+        <td>{{ i.email }}</td>
+    </tr>
+{% endfor %}
+</table>
+
+{% endblock %}

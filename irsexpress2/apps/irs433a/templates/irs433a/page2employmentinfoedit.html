@@ -1,0 +1,9 @@
+
+    <tr class="{{ prefix }}_empinfo_details"><td class="leftcol col-md-4">
+        {{ prefix.title }}'s Employment information
+        <input type="hidden" class="form-id" name="{{ prefix }}-id" value="{% if form.instance.pk %}{{ form.instance.pk }}{% endif %}"/>
+        </td>
+        <td class="rightcol col-md-8">
+        {{ form.as_table }}
+        </td>
+    </tr>

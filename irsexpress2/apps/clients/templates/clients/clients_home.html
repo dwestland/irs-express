@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Clients List{% endblock %}
+
+{% block content %}
+
+<div class="row form-horizontal">
+    <div class="col-md-6 text-left">
+        <h1 class="text-left">Clients</h1>
+        <div class="form-group">
+            <div class="xinput-group col-sm-7">
+                <div class="checkbox">
+                    <label class="col-sm-4"><input class="chk-filter" type="checkbox" checked name="status[]" value="active">Active</label>
+                    <label class="col-sm-4"><input class="chk-filter" type="checkbox" name="status[]" value="onhold">On Hold</label>
+                    <label class="col-sm-4"><input class="chk-filter" type="checkbox" name="status[]" value="closed">Closed</label>
+                </div>
+            </div>
+            <div class="xinput-group col-sm-4">
+                <a href="{% url 'new_client' %}" class="btn btn-primary form-control"><span class="fa fa-user-plus"></span> New Client</a>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-3 lead text-right">Filter</div>
+            <div class="input-group col-sm-8">
+                <div class="input-group-addon"><span class="fa fa-search"></span></div>
+                <input class="form-control input-filter" name="clientfilter" value="">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 paginated_content pagination-sortfield" data-field='display_name' data-asc='0'>
+                <img src="{% static 'img/progress_large.gif' %}">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <h2>Active Clients Status</h2>
+        {% include 'clients/active_client_list.html' %}
+    </div>
+
+</div>
+{% endblock %}

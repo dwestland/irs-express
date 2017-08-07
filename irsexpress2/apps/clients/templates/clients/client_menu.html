@@ -1,0 +1,23 @@
+
+<div class="row">
+    <div class="col-md-12">
+        {% if client.pk %}
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="{{ if_cp_active }}">
+                <a href="{% url 'client_cp' client.pk %}">
+                    <span class="fa fa-calculator"></span> Control Panel</a></li>
+            <li role="presentation" class="{{ if_edit_active }}">
+                <a href="{% url 'edit_client' client.pk %}">
+                    <span class="fa fa-edit"></span> Client Profile</a></li>
+            <li role="presentation" class="{{ if_notes_active }}">
+                <a href="{% url 'client_notes' client.pk %}">
+                    <span class="fa fa-sticky-note-o"></span> Notes</a></li>
+            <li role="presentation" class="{{ if_docs_active }}">
+                <a href="{% url 'client_docs' client.pk %}">
+                    <span class="fa fa-file-text-o"></span> Documents</a></li>
+        </ul>
+        {% else %}
+        &nbsp;
+        {% endif %}
+    </div>
+</div>

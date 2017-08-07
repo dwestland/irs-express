@@ -1,0 +1,13 @@
+
+    <tr class="{{ form.subform_classname }} {{ form.prefix }}-details" data-prefix="{{ form.prefix }}" data-subform-classname="{{ form.subform_classname }}"><td class="leftcol col-md-4">
+        {{ form.object_name }} Details
+        <input type="hidden" name="{{ form.prefix }}-id" value="{% if form.instance.pk %}{{ form.instance.pk }}{% endif %}"/>
+        <br/><br/>
+        <button class="btn btn-danger btn-sm remove-subform"><span class="fa fa-times"></span> Remove This {{ form.object_name }}</button>
+        <br/><br/>
+        <button class="btn btn-primary btn-sm add-subform"><span class="fa fa-plus"></span> Add One {{ form.object_name }}</button>
+        </td>
+        <td class="rightcol col-md-8">
+        {{ form.as_table }}
+        </td>
+    </tr>

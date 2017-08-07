@@ -1,0 +1,97 @@
+
+.opaquebg {
+  content: "";
+  opacity: 0.3;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.header {
+  display: table;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.headerbg-style0 {
+  background: url($static_url + '/img/irs_bg00.jpg') no-repeat center top fixed; 
+}
+
+.headerbg-style1::after {
+  background: url($static_url + '/img/irs_bg01.jpg') no-repeat center center fixed;
+  @extend .opaquebg;
+}
+
+.headerbg-style2 {
+  background: url($static_url + '/img/irs_bg02.jpg') no-repeat center top fixed; 
+}
+
+.headerbg-style3::after {
+  background: url($static_url + '/img/irs_bg03.jpg') no-repeat center top fixed;
+  @extend .opaquebg;
+  opacity: 0.7;
+}
+.headerbg-style3 .loginbox {
+    top: 100px;
+    text-shadow: 1px 1px 1px white, 0 0 1em black;
+}
+
+.headerbg-style4::after {
+  background: url($static_url + '/img/irs_bg04.jpg') no-repeat center center fixed; 
+  @extend .opaquebg;
+}
+.headerbg-style5 {
+  background: url($static_url + '/img/irs_bg05.jpg') no-repeat center top fixed; 
+}
+.headerbg-style6::after {
+  background: url($static_url + '/img/irs_bg06.jpg') no-repeat left top fixed;
+  @extend .opaquebg;
+  opacity: 0.7;
+}
+.headerbg-style6 .loginbox {
+    // right: 100px;
+    // text-shadow: 1px 1px 2px white, 0 0 1em black;
+}
+
+
+.headerbg-style7 {
+  background: url($static_url + '/img/irs_bg07.jpg') no-repeat center top fixed; 
+}
+
+.loginbox {
+    width: 30%;
+    height: 300px;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    color: black;
+}
+
+.header {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.loginbox input {
+    background:transparent;
+    color: black;
+}
+.loginbox .input-group-addon {
+    opacity: 0.7;
+    background:transparent;
+}
+
+$placeholdercolor: #444444;
+.loginbox .form-control::-webkit-input-placeholder { color: $placeholdercolor; }
+.loginbox .form-control:-moz-placeholder { color: $placeholdercolor; }
+.loginbox .form-control::-moz-placeholder { color: $placeholdercolor; }
+.loginbox .form-control:-ms-input-placeholder { color: $placeholdercolor; }

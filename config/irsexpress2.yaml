@@ -1,0 +1,18 @@
+
+SECRET_KEY: PutHereAnyRanD0mStRiNG123456789011223344556677889900
+
+DATABASES:
+    # default:
+    #     ENGINE: django.db.backends.sqlite3
+    #     NAME: db.sqlite3
+    default:
+        ENGINE: django.db.backends.postgresql_psycopg2
+        # HOST: localhost
+        HOST: ""
+        PORT: 5432
+        NAME: irsexpress2
+        USER: irsexpress2
+        PASSWORD: irsexpresspass
+
+MEDIA_ROOT: /mnt/documents/documents
+ALLOWED_HOSTS: ['52.8.113.207', 'stage.irsexpress.com', 'app.irsexpress.com']

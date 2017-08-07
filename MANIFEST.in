@@ -1,0 +1,8 @@
+graft config
+graft docs
+graft irsexpress2
+prune irsexpress2/media
+include manage.py manage.sh
+
+global-exclude __pycache__
+global-exclude *.py[co]

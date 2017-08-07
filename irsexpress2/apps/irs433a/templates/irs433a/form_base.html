@@ -1,0 +1,50 @@
+{% extends 'irs_common/form_base.html' %}
+{% load staticfiles %}
+
+        {% block formpages %}
+        Pages:
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="{{ is_page1_active }}">
+                <a href="{% url '433a-page-1' client.pk %}">
+                    <span class="fa fa-file-o"></span>
+                        Section 1 {% if form.instance.form.page1.pk %}<span class="text-success fa fa-check"></span>{% endif %}</a></li>
+            <li role="presentation" class="{{ is_page2_active }}">
+                <a href="{% url '433a-page-2' client.pk %}">
+                    <span class="fa fa-file-o"></span>
+                        Section 2 {% if form.instance.form.page2.pk %}<span class="text-success fa fa-check"></span>{% endif %}</a></li>
+            <li role="presentation" class="{{ is_page3_active }}">
+                <a href="{% url '433a-page-3' client.pk %}">
+                    <span class="fa fa-file-o"></span>
+                        Section 3 {% if form.instance.form.page3.pk %}<span class="text-success fa fa-check"></span>{% endif %}</a></li>
+            <li role="presentation" class="{{ is_page4_active }}">
+                <a href="{% url '433a-page-4' client.pk %}">
+                    <span class="fa fa-file-o"></span>
+                        Section 4 p1 {% if form.instance.form.page4.pk %}<span class="text-success fa fa-check"></span>{% endif %}</a></li>
+            <li role="presentation" class="{{ is_page5_active }}">
+                <a href="{% url '433a-page-5' client.pk %}">
+                    <span class="fa fa-file-o"></span>
+                        Section 4 p2 {% if form.instance.form.page5.pk %}<span class="text-success fa fa-check"></span>{% endif %}</a></li>
+            <li role="presentation" class="{{ is_page6_active }}">
+                <a href="{% url '433a-page-6' client.pk %}">
+                    <span class="fa fa-file-o"></span>
+                        Section 5 {% if form.instance.form.page6.pk %}<span class="text-success fa fa-check"></span>{% endif %}</a></li>
+            <li role="presentation" class="{{ is_page7_active }}">
+                <a href="{% url '433a-page-7' client.pk %}">
+                    <span class="fa fa-file-o"></span>
+                        Section 6 {% if form.instance.form.page7.pk %}<span class="text-success fa fa-check"></span>{% endif %}</a></li>
+            <li role="presentation" class="{{ is_page8_active }}">
+                <a href="{% url '433a-page-8' client.pk %}">
+                    <span class="fa fa-file-o"></span>
+                        Section 7 {% if form.instance.form.page8.pk %}<span class="text-success fa fa-check"></span>{% endif %}</a></li>
+        </ul>
+        {% endblock %}
+
+{% block subformlist_loader %}
+{% if page_active != 'is_page2_active' %}
+{{ block.super }}
+{% endif %}
+ {% endblock %}
+
+{% block form_content %}
+TBD
+{% endblock %}

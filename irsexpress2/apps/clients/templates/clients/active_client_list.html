@@ -1,0 +1,38 @@
+{% extends 'partials/list.html' %}
+{% load booltags %}
+
+{% block up_pagination %}
+{% endblock %}
+{% block bottom_pagination %}
+{% endblock %}
+
+{% block listcontent %}
+
+<div class="scrollable">
+
+<table class="table table-condensed table-hover text-center" data-editform="{% url 'new_client' %}">
+<tr>
+    <th class="col-md-1">Actons</th>
+    <th class="col-md-7"><div><span>Client Name</span></div></th>
+    <th class="col-md-1"><div><span>Stage</span></div></th>
+    <th class="col-md-2"><div><span>Past Due</span></div></th>
+    <th class="col-md-1"><div><span>Case Opened Days</span></div></th>
+</tr>
+{% for i in active_clients %}
+    <tr data-id="{{ i.id }}">
+        <td><a href="{% url 'client_cp' i.pk %}" class="btn btn-primary btn-sm"><span class="fa fa-edit"></span> Open</a></td>
+        <td>{{ i.display_name }}</td>
+        <td>{{ i.stage }}</td>
+        <td class="
+    {% if i.past_due < 0 %}text-success
+    {% elif i.past_due == 0 %}text-warning text-strong
+    {% else %}text-danger text-strong
+    {% endif %}
+    ">{{ i.past_due }}</td>
+        <td>{{ i.case_days }}</td>
+    </tr>
+{% endfor %}
+</table>
+
+</div>
+{% endblock %}
